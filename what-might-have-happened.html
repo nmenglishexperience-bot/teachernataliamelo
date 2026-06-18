@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What Might Have Happened? | NM English Experience</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Alice&family=Montserrat:wght@600;700;800&display=swap');
+
+  :root{
+    --red:#a81107;
+    --blue:#060c9b;
+    --white:#FFFFFF;
+    --black:#111111;
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:'Poppins',sans-serif;
+    color:var(--black);
+    background:var(--white);
+    line-height:1.6;
+    font-size:18px;
+  }
+  h1,h2,h3,h4{
+    font-family:'Montserrat',sans-serif;
+    color:var(--blue);
+    margin-top:0;
+  }
+  .activity-font{font-family:'Alice',serif;}
+
+  header.hero{
+    background:var(--blue);
+    color:var(--white);
+    padding:60px 24px;
+    text-align:center;
+  }
+  header.hero h1{
+    color:var(--white);
+    font-size:2.6rem;
+    margin-bottom:10px;
+  }
+  header.hero p{
+    font-size:1.2rem;
+    margin:0;
+  }
+  .badge{
+    display:inline-block;
+    background:var(--red);
+    color:var(--white);
+    padding:6px 18px;
+    border-radius:30px;
+    font-weight:600;
+    margin-top:18px;
+    font-size:0.95rem;
+  }
+
+  nav.toc{
+    background:var(--white);
+    border-bottom:4px solid var(--red);
+    padding:14px;
+    text-align:center;
+    position:sticky;
+    top:0;
+    z-index:50;
+    overflow-x:auto;
+    white-space:nowrap;
+  }
+  nav.toc a{
+    color:var(--blue);
+    text-decoration:none;
+    font-weight:600;
+    margin:0 10px;
+    font-size:0.95rem;
+  }
+  nav.toc a:hover{color:var(--red);}
+
+  section{
+    max-width:900px;
+    margin:0 auto;
+    padding:50px 24px;
+    border-bottom:1px solid #eee;
+  }
+  section:nth-of-type(even){background:#fafafa;}
+
+  .section-title{
+    border-left:6px solid var(--red);
+    padding-left:16px;
+    margin-bottom:30px;
+  }
+  .section-title h2{
+    font-size:1.8rem;
+    margin:0;
+  }
+
+  .card{
+    background:var(--white);
+    border:2px solid var(--blue);
+    border-radius:14px;
+    padding:24px;
+    margin-bottom:20px;
+  }
+  .card.red-border{border-color:var(--red);}
+
+  .need-words{
+    background:var(--blue);
+    color:var(--white);
+    border-radius:14px;
+    padding:28px;
+  }
+  .need-words h3{color:var(--white);margin-bottom:14px;}
+  .need-words ul{margin:0;padding-left:20px;}
+  .need-words li{margin-bottom:8px;font-family:'Alice',serif;font-size:1.1rem;}
+
+  ul.warmup, ol.questions{padding-left:24px;}
+  ul.warmup li, ol.questions li{
+    margin-bottom:14px;
+    cursor:pointer;
+    padding:10px 14px;
+    border-radius:8px;
+    transition:background 0.2s;
+    font-family:'Alice',serif;
+    font-size:1.15rem;
+  }
+  ul.warmup li:hover, ol.questions li:hover{
+    background:#fdeceb;
+  }
+
+  .vocab-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:16px;
+  }
+  .vocab-item{
+    border:2px solid var(--red);
+    border-radius:10px;
+    padding:14px 18px;
+    font-weight:600;
+    color:var(--red);
+    text-align:center;
+  }
+
+  .dialogue-line{
+    padding:12px 16px;
+    border-radius:8px;
+    margin-bottom:8px;
+    cursor:pointer;
+    transition:background 0.2s;
+    font-family:'Alice',serif;
+    font-size:1.15rem;
+  }
+  .dialogue-line:hover{background:#e7e9fb;}
+  .dialogue-line strong{color:var(--blue);}
+
+  .toggle-btn{
+    background:var(--red);
+    color:var(--white);
+    border:none;
+    padding:10px 20px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:600;
+    font-size:1rem;
+    margin-bottom:14px;
+  }
+  .toggle-btn:hover{opacity:0.9;}
+  .toggle-content{
+    display:none;
+    background:#fff;
+    border:2px dashed var(--blue);
+    border-radius:10px;
+    padding:18px;
+  }
+  .toggle-content.open{display:block;}
+
+  .grammar-table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:10px;
+  }
+  .grammar-table th, .grammar-table td{
+    border:1px solid #ccc;
+    padding:12px;
+    text-align:left;
+  }
+  .grammar-table th{
+    background:var(--blue);
+    color:var(--white);
+  }
+
+  textarea, input[type=text]{
+    width:100%;
+    padding:12px;
+    border:2px solid var(--blue);
+    border-radius:8px;
+    font-family:'Poppins',sans-serif;
+    font-size:1rem;
+    margin-top:8px;
+  }
+  textarea{resize:vertical;min-height:90px;}
+
+  .speaking-prompt, .reading-q{
+    background:var(--white);
+    border:2px solid var(--red);
+    border-radius:10px;
+    padding:16px;
+    margin-bottom:14px;
+    cursor:pointer;
+    transition:background 0.2s;
+    font-family:'Alice',serif;
+    font-size:1.1rem;
+  }
+  .speaking-prompt:hover, .reading-q:hover{background:#fdeceb;}
+
+  .audio-player{
+    background:var(--blue);
+    color:var(--white);
+    border-radius:14px;
+    padding:24px;
+  }
+  .audio-controls{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+    margin-top:14px;
+  }
+  .audio-controls button{
+    background:var(--red);
+    color:var(--white);
+    border:none;
+    border-radius:50%;
+    width:46px;
+    height:46px;
+    font-size:1.1rem;
+    cursor:pointer;
+  }
+  .seek-bar{
+    flex:1;
+    min-width:150px;
+  }
+
+  .self-eval label{
+    display:block;
+    margin-bottom:12px;
+    font-family:'Alice',serif;
+    font-size:1.1rem;
+    cursor:pointer;
+  }
+  .self-eval input{margin-right:10px;}
+
+  .save-status{
+    position:fixed;
+    bottom:16px;
+    right:16px;
+    background:var(--red);
+    color:var(--white);
+    padding:10px 18px;
+    border-radius:30px;
+    font-size:0.9rem;
+    font-weight:600;
+    opacity:0;
+    transition:opacity 0.4s;
+    z-index:100;
+  }
+  .save-status.show{opacity:1;}
+
+  .match-row{
+    display:flex;
+    gap:12px;
+    align-items:center;
+    margin-bottom:12px;
+    flex-wrap:wrap;
+  }
+  .match-row span{
+    font-family:'Alice',serif;
+    font-size:1.05rem;
+  }
+  select{
+    padding:8px;
+    border-radius:6px;
+    border:2px solid var(--blue);
+    font-family:'Poppins',sans-serif;
+  }
+
+  footer{
+    text-align:center;
+    padding:30px;
+    background:var(--black);
+    color:var(--white);
+    font-size:0.9rem;
+  }
+
+  @media (max-width:600px){
+    header.hero h1{font-size:1.9rem;}
+    section{padding:34px 16px;}
+    body{font-size:16px;}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <h1>What Might Have Happened?</h1>
+  <p>Modal Verbs for Past Deduction &amp; Phrasal Verbs with "Out"</p>
+  <span class="badge">NM English Experience</span>
+</header>
+
+<nav class="toc">
+  <a href="#goals">Goals</a>
+  <a href="#warmup">Warm-up</a>
+  <a href="#needwords">Need Words</a>
+  <a href="#vocab">Vocabulary</a>
+  <a href="#practice">Practice</a>
+  <a href="#reading">Reading</a>
+  <a href="#grammar">Grammar</a>
+  <a href="#pronunciation">Pronunciation</a>
+  <a href="#listening">Listening</a>
+  <a href="#speaking">Speaking</a>
+  <a href="#writing">Writing</a>
+  <a href="#selfeval">Self-Evaluation</a>
+  <a href="#homework">Homework</a>
+</nav>
+
+<section id="goals">
+  <div class="section-title"><h2>Goal Settings</h2></div>
+  <div class="card">
+    <p>By the end of this lesson, students can make natural deductions about past events, express different levels of certainty, and discuss evidence using authentic spoken English.</p>
+  </div>
+</section>
+
+<section id="warmup">
+  <div class="section-title"><h2>Warm-up</h2></div>
+  <ul class="warmup">
+    <li>Have you ever misunderstood a situation?</li>
+    <li>Have you ever seen something strange and tried to explain it?</li>
+    <li>Do you enjoy mystery stories or true-crime documentaries?</li>
+    <li>What is the last surprising thing you found out?</li>
+  </ul>
+</section>
+
+<section id="needwords">
+  <div class="section-title"><h2>Need Words?</h2></div>
+  <div class="need-words">
+    <h3>Useful phrases for this lesson</h3>
+    <ul>
+      <li>He must have forgotten.</li>
+      <li>She might have missed the train.</li>
+      <li>They could have gotten lost.</li>
+      <li>That can't have happened.</li>
+      <li>We need to figure it out.</li>
+      <li>The truth came out later.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="vocab">
+  <div class="section-title"><h2>Vocabulary in Context</h2></div>
+  <div class="vocab-grid">
+    <div class="vocab-item">figure out</div>
+    <div class="vocab-item">find out</div>
+    <div class="vocab-item">work out</div>
+    <div class="vocab-item">point out</div>
+    <div class="vocab-item">turn out</div>
+    <div class="vocab-item">carry out</div>
+    <div class="vocab-item">evidence</div>
+    <div class="vocab-item">witness</div>
+    <div class="vocab-item">clue</div>
+    <div class="vocab-item">assumption</div>
+  </div>
+
+  <div class="card red-border" style="margin-top:24px;">
+    <h3>Real exchanges</h3>
+    <div class="dialogue-line"><strong>A:</strong> How did you find out?</div>
+    <div class="dialogue-line"><strong>B:</strong> I saw it online.</div>
+    <div class="dialogue-line"><strong>A:</strong> Did they work it out?</div>
+    <div class="dialogue-line"><strong>B:</strong> Yes, eventually.</div>
+  </div>
+</section>
+
+<section id="practice">
+  <div class="section-title"><h2>Controlled Practice</h2></div>
+
+  <div class="card">
+    <h3>1. Match evidence with deductions</h3>
+    <div class="match-row">
+      <span>His car wasn't in the driveway.</span>
+      <select data-q="match1">
+        <option value="">Choose...</option>
+        <option value="a">He must have gone out.</option>
+        <option value="b">He can't have been home.</option>
+        <option value="c">He might have sold it.</option>
+      </select>
+    </div>
+    <div class="match-row">
+      <span>The lights were still on at midnight.</span>
+      <select data-q="match2">
+        <option value="">Choose...</option>
+        <option value="a">She must have forgotten to turn them off.</option>
+        <option value="b">She might have been working late.</option>
+        <option value="c">She can't have been asleep.</option>
+      </select>
+    </div>
+    <div class="match-row">
+      <span>The door was locked from the inside.</span>
+      <select data-q="match3">
+        <option value="">Choose...</option>
+        <option value="a">Someone must have been inside.</option>
+        <option value="b">It could have locked automatically.</option>
+        <option value="c">It can't have been an accident.</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>2. Choose the strongest conclusion</h3>
+    <p class="activity-font">Evidence: The package was wet, and it had been raining all night.</p>
+    <select data-q="strongest">
+      <option value="">Choose...</option>
+      <option value="a">It might have rained.</option>
+      <option value="b">It must have been left outside.</option>
+      <option value="c">It can't have arrived yet.</option>
+    </select>
+  </div>
+
+  <div class="card">
+    <h3>3. Complete the mini-dialogues</h3>
+    <p class="activity-font">A: How did they ______ the truth?</p>
+    <input type="text" data-q="fill1" placeholder="Type your answer">
+    <p class="activity-font" style="margin-top:18px;">B: I don't know, but it will ______ eventually.</p>
+    <input type="text" data-q="fill2" placeholder="Type your answer">
+  </div>
+</section>
+
+<section id="reading">
+  <div class="section-title"><h2>Reading: The Missing Suitcase</h2></div>
+  <div class="card">
+    <div class="dialogue-line"><strong>Emma:</strong> Did you hear about the missing suitcase?</div>
+    <div class="dialogue-line"><strong>Ryan:</strong> Yeah. Someone must have taken it by mistake.</div>
+    <div class="dialogue-line"><strong>Emma:</strong> Maybe. But airport staff found it two hours later.</div>
+    <div class="dialogue-line"><strong>Ryan:</strong> Then the passenger might have left it at security.</div>
+    <div class="dialogue-line"><strong>Emma:</strong> That sounds more likely.</div>
+    <div class="dialogue-line"><strong>Ryan:</strong> It can't have been stolen if they found it inside the terminal.</div>
+  </div>
+
+  <h3>Comprehension</h3>
+  <div class="reading-q">1. What happened?</div>
+  <textarea data-q="read1" placeholder="Your answer..."></textarea>
+  <div class="reading-q">2. What is Ryan's first theory?</div>
+  <textarea data-q="read2" placeholder="Your answer..."></textarea>
+  <div class="reading-q">3. What evidence changes the conclusion?</div>
+  <textarea data-q="read3" placeholder="Your answer..."></textarea>
+  <div class="reading-q">4. Why does Ryan reject one possibility?</div>
+  <textarea data-q="read4" placeholder="Your answer..."></textarea>
+  <div class="reading-q">5. Which explanation seems most likely?</div>
+  <textarea data-q="read5" placeholder="Your answer..."></textarea>
+</section>
+
+<section id="grammar">
+  <div class="section-title"><h2>Grammar in Context</h2></div>
+
+  <div class="card">
+    <h3>Discovery Task</h3>
+    <p class="activity-font">Look at the reading again. Find and write one example of each:</p>
+    <p>must have + past participle</p>
+    <input type="text" data-q="disc1">
+    <p style="margin-top:14px;">might have + past participle</p>
+    <input type="text" data-q="disc2">
+    <p style="margin-top:14px;">could have + past participle</p>
+    <input type="text" data-q="disc3">
+    <p style="margin-top:14px;">can't have + past participle</p>
+    <input type="text" data-q="disc4">
+  </div>
+
+  <button class="toggle-btn" onclick="toggleBox('grammarBox')">Show / Hide Grammar Box</button>
+  <div class="toggle-content" id="grammarBox">
+    <p>Native speakers use these forms to guess about the past when they don't know exactly what happened.</p>
+    <table class="grammar-table">
+      <tr><th>Certainty</th><th>Example</th></tr>
+      <tr><td>100% certain</td><td>I know.</td></tr>
+      <tr><td>Very strong deduction</td><td>He must have forgotten.</td></tr>
+      <tr><td>Possible</td><td>She might have missed the email. / They could have gotten lost.</td></tr>
+      <tr><td>Impossible</td><td>That can't have happened.</td></tr>
+    </table>
+  </div>
+</section>
+
+<section id="pronunciation">
+  <div class="section-title"><h2>Pronunciation Focus</h2></div>
+  <div class="card">
+    <h3>Natural reductions</h3>
+    <div class="vocab-grid">
+      <div class="vocab-item">must've</div>
+      <div class="vocab-item">could've</div>
+      <div class="vocab-item">might've</div>
+      <div class="vocab-item">can't've</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Practice</h3>
+    <p class="activity-font">1. Look at evidence and make deductions.</p>
+    <textarea data-q="pron1" placeholder="Your deduction..."></textarea>
+    <p class="activity-font" style="margin-top:18px;">2. Rank explanations from most likely to least likely.</p>
+    <textarea data-q="pron2" placeholder="Your ranking..."></textarea>
+    <p class="activity-font" style="margin-top:18px;">3. Create follow-up questions to investigate situations.</p>
+    <textarea data-q="pron3" placeholder="Your questions..."></textarea>
+  </div>
+</section>
+
+<section id="listening">
+  <div class="section-title"><h2>Listening: A Missed Meeting</h2></div>
+
+  <div class="audio-player">
+    <h3 style="color:#fff;">A Missed Meeting at Work</h3>
+    <div class="audio-controls">
+      <button id="playBtn" onclick="togglePlay()">&#9658;</button>
+      <button onclick="replayAudio()">&#8635;</button>
+      <input type="range" class="seek-bar" id="seekBar" value="0" min="0" max="100">
+      <span id="timeLabel">0:00</span>
+    </div>
+    <audio id="lessonAudio" preload="metadata"></audio>
+    <p style="margin-top:10px;font-size:0.9rem;opacity:0.85;">(Audio file not bundled — play button simulates lesson timing. Use transcript below to follow along.)</p>
+  </div>
+
+  <button class="toggle-btn" style="margin-top:20px;" onclick="toggleBox('transcriptBox')">Show / Hide Transcript</button>
+  <div class="toggle-content" id="transcriptBox">
+    <div class="dialogue-line"><strong>A:</strong> Daniel wasn't at the meeting this morning.</div>
+    <div class="dialogue-line"><strong>B:</strong> Really? He must have forgotten about it.</div>
+    <div class="dialogue-line"><strong>A:</strong> Maybe, but he never forgets meetings.</div>
+    <div class="dialogue-line"><strong>B:</strong> Then he might have had a problem on the way to work.</div>
+    <div class="dialogue-line"><strong>A:</strong> That's possible. His train was delayed yesterday too.</div>
+    <div class="dialogue-line"><strong>B:</strong> Yeah, that could have happened.</div>
+  </div>
+
+  <h3 style="margin-top:30px;">Comprehension</h3>
+  <div class="reading-q">1. Why wasn't Daniel at the meeting (according to speaker B)?</div>
+  <textarea data-q="lis1"></textarea>
+  <div class="reading-q">2. Why does speaker A doubt the first theory?</div>
+  <textarea data-q="lis2"></textarea>
+  <div class="reading-q">3. What is the second theory?</div>
+  <textarea data-q="lis3"></textarea>
+  <div class="reading-q">4. What past evidence supports the second theory?</div>
+  <textarea data-q="lis4"></textarea>
+  <div class="reading-q">5. What modal verb shows speaker B agrees with the new theory?</div>
+  <textarea data-q="lis5"></textarea>
+
+  <h3 style="margin-top:30px;">Post-listening Discussion</h3>
+  <div class="reading-q">What explanations do people usually give for being late?</div>
+  <textarea data-q="lispost1"></textarea>
+  <div class="reading-q">Have you ever made an incorrect assumption about someone?</div>
+  <textarea data-q="lispost2"></textarea>
+</section>
+
+<section id="speaking">
+  <div class="section-title"><h2>Speaking</h2></div>
+  <div class="speaking-prompt">1. Look at a photo and explain what might have happened.</div>
+  <div class="speaking-prompt">2. Discuss a mystery from the news.</div>
+  <div class="speaking-prompt">3. Why do people jump to conclusions?</div>
+  <div class="speaking-prompt">4. Describe a misunderstanding you experienced.</div>
+  <div class="speaking-prompt">5. What clues help you trust information?</div>
+  <div class="speaking-prompt">6. Discuss a situation where appearances were misleading.</div>
+  <div class="speaking-prompt">7. Explain a surprising event using deductions.</div>
+  <div class="speaking-prompt">8. React to your partner's theories and challenge them.</div>
+</section>
+
+<section id="writing">
+  <div class="section-title"><h2>Writing: A Strange Situation</h2></div>
+  <div class="card">
+    <p>Write 150–200 words describing an unusual event and present at least three possible explanations using modal verbs for deduction.</p>
+    <textarea data-q="writing1" style="min-height:220px;" placeholder="Write your paragraph here..."></textarea>
+  </div>
+</section>
+
+<section id="selfeval">
+  <div class="section-title"><h2>Self-Evaluation</h2></div>
+  <div class="card self-eval">
+    <label><input type="checkbox" data-q="eval1"> I can express different levels of certainty.</label>
+    <label><input type="checkbox" data-q="eval2"> I can speculate naturally about past events.</label>
+    <label><input type="checkbox" data-q="eval3"> I can support deductions with evidence.</label>
+    <label><input type="checkbox" data-q="eval4"> I can use common phrasal verbs with "out."</label>
+    <label><input type="checkbox" data-q="eval5"> I can discuss uncertainty like native speakers do.</label>
+  </div>
+</section>
+
+<section id="homework">
+  <div class="section-title"><h2>Homework</h2></div>
+  <div class="card">
+    <p>Choose 2:</p>
+    <ul class="warmup">
+      <li>Watch a news story and write three deductions about what might have happened.</li>
+      <li>Record a voice memo explaining an unsolved situation from your life.</li>
+      <li>Find three examples of modal deductions in movies, podcasts, or social media and explain their meaning.</li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  NM English Experience — "What Might Have Happened?" Lesson
+</footer>
+
+<div class="save-status" id="saveStatus">Saved ✓</div>
+
+<script>
+  const STORAGE_KEY = 'nm_what_might_have_happened';
+
+  function toggleBox(id){
+    document.getElementById(id).classList.toggle('open');
+  }
+
+  function loadAnswers(){
+    const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+    document.querySelectorAll('[data-q]').forEach(el=>{
+      const key = el.getAttribute('data-q');
+      if(!(key in data)) return;
+      if(el.type === 'checkbox'){
+        el.checked = data[key];
+      } else {
+        el.value = data[key];
+      }
+    });
+  }
+
+  function saveAnswers(){
+    const data = {};
+    document.querySelectorAll('[data-q]').forEach(el=>{
+      const key = el.getAttribute('data-q');
+      data[key] = el.type === 'checkbox' ? el.checked : el.value;
+    });
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    showSaveStatus();
+  }
+
+  let saveTimer;
+  function showSaveStatus(){
+    const status = document.getElementById('saveStatus');
+    status.classList.add('show');
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(()=>status.classList.remove('show'), 1500);
+  }
+
+  document.addEventListener('input', e=>{
+    if(e.target.matches('[data-q]')) saveAnswers();
+  });
+  document.addEventListener('change', e=>{
+    if(e.target.matches('[data-q]')) saveAnswers();
+  });
+
+  loadAnswers();
+
+  let isPlaying = false;
+  const playBtn = document.getElementById('playBtn');
+  const seekBar = document.getElementById('seekBar');
+  const timeLabel = document.getElementById('timeLabel');
+  let simSeconds = 0;
+  let simInterval;
+
+  function togglePlay(){
+    isPlaying = !isPlaying;
+    playBtn.innerHTML = isPlaying ? '&#10074;&#10074;' : '&#9658;';
+    if(isPlaying){
+      simInterval = setInterval(()=>{
+        simSeconds++;
+        seekBar.value = Math.min(100, simSeconds);
+        const m = Math.floor(simSeconds/60);
+        const s = (simSeconds%60).toString().padStart(2,'0');
+        timeLabel.textContent = m + ':' + s;
+        if(simSeconds >= 100){
+          clearInterval(simInterval);
+          isPlaying = false;
+          playBtn.innerHTML = '&#9658;';
+        }
+      },600);
+    } else {
+      clearInterval(simInterval);
+    }
+  }
+
+  function replayAudio(){
+    clearInterval(simInterval);
+    simSeconds = 0;
+    seekBar.value = 0;
+    timeLabel.textContent = '0:00';
+    isPlaying = false;
+    playBtn.innerHTML = '&#9658;';
+  }
+
+  seekBar.addEventListener('input', ()=>{
+    simSeconds = parseInt(seekBar.value, 10);
+    const m = Math.floor(simSeconds/60);
+    const s = (simSeconds%60).toString().padStart(2,'0');
+    timeLabel.textContent = m + ':' + s;
+  });
+</script>
+
+</body>
+</html>
